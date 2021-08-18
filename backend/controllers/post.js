@@ -16,7 +16,7 @@ const registerPost = async (req, res) => {
 };
 
 const listPost = async (req, res) => {
-  const post = await Post.find().populate("userId").exec();
+  const post = await Post.find({ userId: req.user._id }).populate("userId").exec();
   if (!post || post.length === 0) return res.status(400).send("No posts");
   return res.status(200).send({ post });
 };
