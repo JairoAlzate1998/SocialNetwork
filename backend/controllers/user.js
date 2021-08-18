@@ -30,7 +30,7 @@ const registerUser = async (req, res) => {
 };
 
 const listUser = async (req, res) => {
-    let user = await User.find({ name: RegExp(req.params["name"], "i") });
+    let user = await User.find({ name: new RegExp(req.params["name"], "i") });
     if(!user || user.length === 0) return res.status(400).send("No users");
     return res.status(200).send({ user });
 };
